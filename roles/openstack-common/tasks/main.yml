@@ -1,0 +1,10 @@
+---
+- include: netif.yml
+  when: ansible_eth1 is defined
+  vars:
+    device: eth1
+- include: netif.yml
+  when: ansible_eth2 is defined
+  vars:
+    device: eth2
+

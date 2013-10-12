@@ -1,0 +1,3 @@
+---
+- command: sed -i "/^SELINUX=/ s/=.*/={{state|default('enforcing')}}/" /etc/selinux/config
+

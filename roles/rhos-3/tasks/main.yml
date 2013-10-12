@@ -1,0 +1,7 @@
+---
+- get_url: url=http://ayanami.bos.devel.redhat.com/poodles/rhos-devel-ci/3.0/latest/RHOS-3.repo dest=/etc/yum.repos.d/RHOS-3.repo
+- yum: name=* state=latest
+- yum: name=openstack-packstack state=latest
+- command: reboot
+- local_action: wait_for delay=10 host={{inventory_hostname}} port=22
+

@@ -1,0 +1,7 @@
+---
+- template:
+      src=ifcfg-ethN
+      dest=/etc/sysconfig/network-scripts/ifcfg-{{device}}
+      owner=root group=root
+- command: ifup {{device}}
+

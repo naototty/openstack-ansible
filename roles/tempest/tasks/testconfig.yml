@@ -1,0 +1,3 @@
+---
+- template: src=tempest.conf dest={{tempest_dir}}/etc/tempest.conf
+

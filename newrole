@@ -1,0 +1,3 @@
+#!/bin/sh
+
+mkdir -p roles/$1/{files,templates,tasks,handlers,vars,meta}
