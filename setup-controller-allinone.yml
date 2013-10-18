@@ -1,0 +1,33 @@
+- hosts: controller
+  roles:
+    - role: rhifcfg
+      device: eth1
+      type: Ethernet
+      onboot: yes
+      bootproto: none
+      ipaddr: 10.9.8.1
+      netmask: 255.255.255.0
+      state: up
+    - role: rhifcfg
+      device: eth2
+      type: Ethernet
+      onboot: yes
+      bootproto: none
+      state: up
+    - role: rdo-havana
+      CONFIG_NOVA_NETWORK_PUBIF: eth0
+      CONFIG_NOVA_NETWORK_PRIVIF: lo
+      CONFIG_NOVA_COMPUTE_PRIVIF: lo
+      CONFIG_PROVISION_ALL_IN_ONE_OVS_BRIDGE: y
+      CONFIG_PROVISION_DEMO: y
+      CONFIG_SWIFT_INSTALL: y
+      CONFIG_SSH_KEY: /root/.ssh/id_rsa.pub
+    - role: image
+      image_name: cirros
+      image_url: https://launchpad.net/cirros/trunk/0.3.0/+download/cirros-0.3.0-x86_64-disk.img
+    - role: flavor
+      flavor_name: m1.nano
+      flavor_ram: 256
+      flavor_disk: 1
+      flavor_cpu: 1
+

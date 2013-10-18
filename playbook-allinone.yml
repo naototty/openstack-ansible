@@ -1,0 +1,5 @@
+---
+- include: rdo-and-upgrade.yml
+- include: setup-root-sshkey.yml
+- include: setup-controller-allinone.yml
+#- include: setup-neutron.yml

@@ -1,0 +1,11 @@
+# Ensure that all hosts have the RDO Havana repository
+# available and have completed a "yum upgrade".  This will
+# also reboot the remote host if a new kernel package is 
+# installed.
+- hosts: all
+  roles:
+    - common
+    - rdo-havana-repo
+    - role: upgrade
+      reboot: yes
+

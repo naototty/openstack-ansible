@@ -1,3 +1,17 @@
 #!/bin/sh
 
-mkdir -p roles/$1/{files,templates,tasks,handlers,vars,meta}
+for dir in files templates tasks handlers vars meta; do
+	mkdir -p roles/$1/$dir
+
+	case $dir in
+		(files|templates)	continue;;
+	esac
+
+	if ! [ -f roles/$1/$dir/main.yml ]; then
+		cat <<-EOF > roles/$1/$dir/main.yml
+		---
+		# main.yml for $1/$dir
+		EOF
+	fi
+done
+

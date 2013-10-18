@@ -1,0 +1,8 @@
+---
+# main.yml for rdo-havana/tasks
+- yum: name=openstack-packstack state=latest
+- template: src=packstack-answers.txt dest=/root/packstack-answers.txt
+  register: last_run
+- command: chdir=/root packstack --answer-file=/root/packstack-answers.txt
+  when: last_run.changed
+

@@ -1,0 +1,21 @@
+DEVICE={{device}}
+TYPE={{type}}
+ONBOOT={{onboot|default('yes')}}
+BOOTPROTO={{bootproto|default('none')}}
+NM_CONTROLLED={{nm_controlled|default('no')}}
+
+{% if ipaddr  is defined %}IPADDR={{ipaddr}}
+{% endif %}
+{% if netmask  is defined %}NETMASK={{netmask}}
+{% endif %}
+{% if netmask  is defined %}BROADCAST={{netmask}}
+{% endif %}
+{% if gateway  is defined %}GATEWAY={{gateway}}
+{% endif %}
+
+{% if type == 'Bridge' %}
+# Bridge settings
+{% if delay  is defined %}DELAY={{delay}}
+{% endif %}
+{% endif %}
+

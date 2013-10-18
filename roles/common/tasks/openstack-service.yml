@@ -1,0 +1,5 @@
+---
+- git: repo=git://github.com/larsks/osctl
+        dest=/var/lib/repos/osctl
+- command: make -C /var/lib/repos/osctl install
+

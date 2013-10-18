@@ -1,7 +1,0 @@
-- hosts: all
-  user: root
-  roles:
-    - common
-    - { role: rhos-3-allinone, packstack_os_install_quantum: y, packstack_provision_tempest: y }
-    - cirros-image
-

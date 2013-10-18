@@ -1,0 +1,17 @@
+---
+- hosts: controller
+  roles:
+    - role: neutron_network
+      network_name: public
+      network_external: true
+      network_subnets:
+        - {name: public, cidr: 192.168.200.0/24, dns_server: 192.168.1.1, disable_dhcp: true}
+    - role: neutron_network
+      network_name: net0
+      network_subnets:
+        - {name: net0-subnet0, cidr: 192.168.32.0/24, dns_servers: 192.168.1.1}
+    - role: neutron_router
+      router_name: pubrouter
+      router_gateway: public
+      router_interfaces:
+        - net0-subnet0

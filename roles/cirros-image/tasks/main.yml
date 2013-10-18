@@ -1,9 +1,0 @@
-- shell: . /root/keystonerc_admin; glance image-show cirros
-  ignore_errors: true
-  register: cirros
-- get_url: url={{cirros_image_url}} dest=/var/tmp/cirros.img
-  when: cirros.rc == 1
-- shell: . /root/keystonerc_admin; glance image-create --is-public True --name cirros --disk-format qcow2 --container-format bare < /var/tmp/cirros.img
-  when: cirros.rc == 1
-- file: path=/var/tmp/cirros.img state=absent
-

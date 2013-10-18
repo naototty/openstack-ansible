@@ -1,0 +1,6 @@
+---
+state:
+bootproto: none
+onboot: 'yes'
+type: Ethernet
+

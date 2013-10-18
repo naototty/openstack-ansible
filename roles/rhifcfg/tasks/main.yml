@@ -1,0 +1,8 @@
+---
+- template: src=ifcfg-dev dest=/etc/sysconfig/network-scripts/ifcfg-{{device}}
+            owner=root group=root mode=0644
+- command: ifup {{device}}
+  when: state == "up"
+- command: ifdown {{device}}
+  when: state == "down"
+

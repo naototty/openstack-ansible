@@ -5,4 +5,5 @@
     - strace
     - screen
     - vim-enhanced
+    - libvirt-client
 
