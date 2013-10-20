@@ -1,6 +1,0 @@
-DEVICE={{device}}
-TYPE=Ethernet
-ONBOOT=yes
-DELAY=0
-NM_CONTROLLED=no
-BOOTPROTO=none

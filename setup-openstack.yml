@@ -1,0 +1,12 @@
+- hosts: controller
+  roles:
+    - role: image
+      image_name: cirros
+      image_url: https://launchpad.net/cirros/trunk/0.3.0/+download/cirros-0.3.0-x86_64-disk.img
+    - role: flavor
+      flavor_name: m1.nano
+      flavor_ram: 256
+      flavor_disk: 1
+      flavor_cpu: 1
+
+

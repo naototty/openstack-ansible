@@ -1,5 +1,2 @@
 ---
-dependencies:
-  - { role: openstack-common }
-#  - { role: tempest, tempest_branch: stable/grizzly }
-
+# main.yml for rdo-havana/meta

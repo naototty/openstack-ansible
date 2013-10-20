@@ -1,6 +1,0 @@
----
-- include: rdo-and-upgrade.yml
-- include: setup-root-sshkey.yml
-- include: setup-compute.yml
-- include: setup-controller-gre.yml
-- include: setup-neutron.yml

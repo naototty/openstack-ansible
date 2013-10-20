@@ -1,0 +1,20 @@
+---
+- include: rhos-3-upgrade.yml
+- include: setup-root-sshkey.yml
+- include: setup-controller-nics.yml
+
+- hosts: controller
+  vars:
+    CONFIG_QUANTUM_INSTALL: n
+    CONFIG_NOVA_NETWORK_PUBIF: eth0
+    CONFIG_NOVA_NETWORK_PRIVIF: lo
+    CONFIG_NOVA_COMPUTE_PRIVIF: lo
+    CONFIG_PROVISION_ALL_IN_ONE_OVS_BRIDGE: y
+    CONFIG_PROVISION_DEMO: y
+    CONFIG_SWIFT_INSTALL: y
+    CONFIG_SSH_KEY: /root/.ssh/id_rsa.pub
+  roles:
+    - role: rhos-3
+
+- include: setup-openstack.yml
+

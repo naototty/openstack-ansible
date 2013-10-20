@@ -1,13 +1,8 @@
 ---
-- get_url: url=http://ayanami.bos.devel.redhat.com/poodles/rhos-devel-ci/3.0/latest/RHOS-3.repo dest=/etc/yum.repos.d/RHOS-3.repo
-- command: yum check-update
-  register: updates
-  ignore_errors: true
-- yum: name=* state=latest
-  when: updates.rc != 0
+# main.yml for rdo-havana/tasks
 - yum: name=openstack-packstack state=latest
-- command: reboot
-  when: updates.rc != 0
-- local_action: wait_for delay=10 host={{inventory_hostname}} port=22
-  when: updates.rc != 0
+- template: src=packstack-answers.txt dest=/root/packstack-answers.txt
+  register: last_run
+- command: chdir=/root packstack --answer-file=/root/packstack-answers.txt
+  when: last_run.changed
 

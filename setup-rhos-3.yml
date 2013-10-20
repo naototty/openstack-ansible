@@ -1,0 +1,4 @@
+- hosts: controller
+  vars:
+  roles:
+    - role: rhos-3
