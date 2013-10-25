@@ -1,5 +1,5 @@
 ---
-# main.yml for rdo-havana/tasks
+# main.yml for havana/tasks
 - yum: name=openstack-packstack state=latest
 - template: src=packstack-answers.txt dest=/root/packstack-answers.txt
   register: last_run

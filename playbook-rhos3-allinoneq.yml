@@ -6,7 +6,7 @@
 
 - hosts: controller
   vars:
-    CONFIG_QUANTUM_INSTALL: n
+    CONFIG_QUANTUM_INSTALL: y
     CONFIG_NOVA_NETWORK_PUBIF: eth0
     CONFIG_NOVA_NETWORK_PRIVIF: lo
     CONFIG_NOVA_COMPUTE_PRIVIF: lo
@@ -15,7 +15,7 @@
     CONFIG_SWIFT_INSTALL: y
     CONFIG_SSH_KEY: /root/.ssh/id_rsa.pub
   roles:
-    - role: rhos-3
+    - role: grizzly
 
 - include: setup-openstack.yml
 

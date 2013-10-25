@@ -1,0 +1,17 @@
+- hosts: compute
+  roles:
+    # This sets up eth1 on all the compute hosts.
+    - role: rhifcfg
+      device: eth1
+      type: Ethernet
+      onboot: yes
+      bootproto: none
+      state: up
+  tasks:
+    - copy: src=sshkeys/id_rsa.pub dest=/root/.ssh/controller.pub owner=root mode=0600
+    - command: grep -f /root/.ssh/controller.pub /root/.ssh/authorized_keys
+      ignore_errors: true
+      register: keyinstalled
+    - shell: cat /root/.ssh/controller.pub >> /root/.ssh/authorized_keys
+      when: keyinstalled.rc != 0
+

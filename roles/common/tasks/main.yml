@@ -2,4 +2,4 @@
 - include: packages.yml
 - include: filesystem.yml
 - include: openstack-service.yml
-- include: selinux.yml state=permissive
+- include: selinux.yml selinux_state=permissive

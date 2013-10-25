@@ -140,7 +140,7 @@ CONFIG_NOVA_COMPUTE_PRIVIF={{CONFIG_NOVA_COMPUTE_PRIVIF}}
 
 # The IP address of the server on which to install the Nova Network
 # service
-CONFIG_NOVA_NETWORK_HOST={{CONFIG_NOVA_NETWORK_HOST}}
+CONFIG_NOVA_NETWORK_HOSTS={{CONFIG_NOVA_NETWORK_HOSTS}}
 
 # Public interface on the Nova network server
 CONFIG_NOVA_NETWORK_PUBIF={{CONFIG_NOVA_NETWORK_PUBIF}}
@@ -223,6 +223,14 @@ CONFIG_QUANTUM_OVS_BRIDGE_MAPPINGS={{CONFIG_QUANTUM_OVS_BRIDGE_MAPPINGS}}
 # pairs. The interface will be added to the associated bridge.
 CONFIG_QUANTUM_OVS_BRIDGE_IFACES={{CONFIG_QUANTUM_OVS_BRIDGE_IFACES}}
 
+# A comma separated list of tunnel ranges for the Neutron openvswitch
+# plugin
+CONFIG_QUANTUM_OVS_TUNNEL_RANGES={{CONFIG_QUANTUM_OVS_TUNNEL_RANGES}}
+
+# Override the IP used for GRE tunnels on this hypervisor to the IP
+# found on the specified interface (defaults to the HOST IP)
+CONFIG_QUANTUM_OVS_TUNNEL_IF={{CONFIG_QUANTUM_OVS_TUNNEL_IF}}
+
 # The IP address of the server on which to install the OpenStack
 # client packages. An admin "rc" file will also be installed
 CONFIG_OSCLIENT_HOST={{CONFIG_OSCLIENT_HOST}}
@@ -268,6 +276,9 @@ CONFIG_SWIFT_STORAGE_FSTYPE={{CONFIG_SWIFT_STORAGE_FSTYPE}}
 
 # Whether to provision for demo usage and testing
 CONFIG_PROVISION_DEMO={{CONFIG_PROVISION_DEMO}}
+
+# The CIDR network address for the floating IP subnet
+CONFIG_PROVISION_DEMO_FLOATRANGE={{CONFIG_PROVISION_DEMO_FLOATRANGE}}
 
 # Whether to configure tempest for testing
 CONFIG_PROVISION_TEMPEST={{CONFIG_PROVISION_TEMPEST}}

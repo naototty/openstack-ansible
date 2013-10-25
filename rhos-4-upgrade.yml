@@ -1,0 +1,13 @@
+---
+# Ensure that all hosts have the RHOS 4 repository
+# available and have completed a "yum upgrade".  This will
+# also reboot the remote host if a new kernel package is 
+# installed.
+- hosts: all
+  pre_tasks:
+     - get_url: url=http://ayanami.bos.devel.redhat.com/poodles/rhos-devel-ci/4.0/latest/RHOS-4.repo
+         dest=/etc/yum.repos.d/RHOS-4.repo
+  roles:
+    - role: upgrade
+      reboot: yes
+
