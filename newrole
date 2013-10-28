@@ -1,6 +1,6 @@
 #!/bin/sh
 
-for dir in files templates tasks handlers vars meta; do
+for dir in files templates tasks handlers vars defaults meta; do
 	mkdir -p roles/$1/$dir
 
 	case $dir in

@@ -1,0 +1,5 @@
+---
+# main.yml for yumrepo/tasks
+- name: provision yum repository {{repo_name}}
+  template: src=yumrepo.repo dest=/etc/yum.repos.d/{{repo_name}}.repo owner=root mode=0644
+

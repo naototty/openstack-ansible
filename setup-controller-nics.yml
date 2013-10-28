@@ -1,4 +1,4 @@
-- hosts: controller
+- hosts: network
   roles:
     - role: rhifcfg
       device: eth1
@@ -7,10 +7,4 @@
       bootproto: none
       ipaddr: 10.9.8.1
       netmask: 255.255.255.0
-      state: up
-    - role: rhifcfg
-      device: eth2
-      type: Ethernet
-      onboot: yes
-      bootproto: none
       state: up

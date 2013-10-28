@@ -1,8 +1,9 @@
 ---
-- template: src=ifcfg-dev dest=/etc/sysconfig/network-scripts/ifcfg-{{device}}
+- name: create interface configuration for device {{ifcfg_device}}
+  template: src=ifcfg-dev dest=/etc/sysconfig/network-scripts/ifcfg-{{ifcfg_device}}
             owner=root group=root mode=0644
-- command: ifup {{device}}
-  when: state == "up"
-- command: ifdown {{device}}
-  when: state == "down"
+- command: ifup {{ifcfg_device}}
+  when: ifcfg_state == "up"
+- command: ifdown {{ifcfg_device}}
+  when: ifcfg_state == "down"
 

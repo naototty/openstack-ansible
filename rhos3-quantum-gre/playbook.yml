@@ -1,0 +1,37 @@
+---
+- hosts: all
+  roles:
+    - common
+    - role: yumrepo
+      repo_name: RHOS-3
+      repo_baseurl: http://download.devel.redhat.com/released/RHEL-6-RHOS/3.0/x86_64/os/
+      repo_gpgcheck: 0
+    - role: upgrade
+      reboot: yes
+
+- include: ../setup-root-sshkey.yml
+
+- hosts:
+  - compute
+  - network
+  roles:
+    - role: rhifcfg
+      ifcfg_device: "{{ CONFIG_QUANTUM_OVS_TUNNEL_IF }}"
+      ifcfg_type: Ethernet
+      ifcfg_onboot: yes
+      ifcfg_bootproto: none,
+      ifcfg_ipaddr: "{{ ovs_tunnel_ipaddr }}"
+      ifcfg_netmask: "{{ ovs_tunnel_netmask }}"
+      ifcfg_state: up
+
+- hosts: controller
+  roles:
+    - grizzly
+
+- hosts: network
+  roles:
+    - network_controller
+ 
+- include: ../setup-openstack.yml
+- include: ../setup-neutron.yml
+

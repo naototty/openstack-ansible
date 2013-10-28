@@ -10,11 +10,3 @@
       ipaddr: "{{gre_endpoint_ip}}"
       netmask: 255.255.255.0
       state: up
-  tasks:
-    - copy: src=sshkeys/id_rsa.pub dest=/root/.ssh/controller.pub owner=root mode=0600
-    - command: grep -f /root/.ssh/controller.pub /root/.ssh/authorized_keys
-      ignore_errors: true
-      register: keyinstalled
-    - shell: cat /root/.ssh/controller.pub >> /root/.ssh/authorized_keys
-      when: keyinstalled.rc != 0
-

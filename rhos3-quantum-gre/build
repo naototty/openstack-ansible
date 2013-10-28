@@ -1,0 +1,7 @@
+#!/bin/sh
+
+virsh list --name --all | grep rhos3-cluster | xargs -n1 virt-delete
+
+virt-from -f -r 512 -s 8G -w bridge=virbr1 default/rhel-6.4-x86_64-base.img rhos3-cluster-network
+virt-from -f -r 2048 -s 8G -w bridge=virbr1 default/rhel-6.4-x86_64-base.img rhos3-cluster-compute
+virt-from -f -r 2048 -s 8G -w bridge=virbr1 default/rhel-6.4-x86_64-base.img rhos3-cluster-api

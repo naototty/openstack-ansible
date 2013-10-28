@@ -4,10 +4,11 @@
 # also reboot the remote host if a new kernel package is 
 # installed.
 - hosts: all
-  pre_tasks:
-     - get_url: url=http://ayanami.bos.devel.redhat.com/poodles/rhos-devel-ci/3.0/latest/RHOS-3.repo
-              dest=/etc/yum.repos.d/RHOS3.repo
   roles:
+    - role: yumrepo
+      repo_name: RHOS-3
+      repo_baseurl: http://download.devel.redhat.com/released/RHEL-6-RHOS/3.0/x86_64/os/
+      repo_gpgcheck: 0
     - role: upgrade
       reboot: yes
 

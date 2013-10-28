@@ -1,0 +1,9 @@
+#!/bin/sh
+
+base=rhos4-cluster
+
+virsh list --name --all | grep $base | xargs -n1 virt-delete
+
+virt-from -f -r 512 -s 8G -w bridge=virbr1,model=virtio default/rhel-6.5-x86_64-base.img $base-network
+virt-from -f -r 2048 -s 8G -w bridge=virbr1,model=virtio default/rhel-6.5-x86_64-base.img $base-compute
+virt-from -f -r 2048 -s 8G -w bridge=virbr1,model=virtio default/rhel-6.5-x86_64-base.img $base-api
