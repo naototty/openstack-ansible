@@ -26,8 +26,9 @@
 
 - hosts: controller
   pre_tasks:
-    - name: BUG: avoid bz 1022686 (Keystone puppet modules fail to parse output of keystone command)
+    - name: "BUG: avoid bz 1022686 (Keystone puppet modules fail to parse output of keystone command)"
       command: yum -d1 -y install http://repos.fedorapeople.org/repos/openstack/openstack-havana/epel-6/python-backports-1.0-4.el6.x86_64.rpm
+      ignore_errors: true
   roles:
     - havana
 
