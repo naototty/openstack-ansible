@@ -14,5 +14,4 @@
   register: last_run
 - name: wait for reboot to complete
   local_action: wait_for delay=10 host={{inventory_hostname}} port=22
-  when: last_run is defined and last_run.changed
 
