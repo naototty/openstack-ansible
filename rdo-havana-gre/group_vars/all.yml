@@ -13,4 +13,5 @@ CONFIG_NOVA_COMPUTE_HOSTS              : "{{hostvars['rdo-havana-compute']['ansi
 CONFIG_PROVISION_DEMO_FLOATRANGE       : 172.24.4.224/28
 selinux_state                          : permissive
 ovs_tunnel_netmask                     : 255.255.255.0
-
+keypair_pub_key                        : ~/.ssh/id_rsa.pub
+keypair_name                           : lars
