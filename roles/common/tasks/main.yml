@@ -1,4 +1,10 @@
 ---
+- name: check system hostname
+  command: hostname
+  register: hostname
+- name: set system hostname
+  command: hostname {{inventory_hostname}}
+  when: "hostname.stdout.find('localhost') != -1"
 - yum: name={{item}} state=latest
   with_items:
     - git
