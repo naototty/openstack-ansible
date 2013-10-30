@@ -9,7 +9,7 @@
     . /root/keystonerc_admin;
     {{neutron_command}} router-create {{router_name}}
   register: router_create
-  when: router_check.rc != 0
+  when: router_check|failed
 - name: set gateway on router {{router_name}} to {{router_gateway}}
   shell: >
     . /root/keystonerc_admin;

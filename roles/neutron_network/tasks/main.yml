@@ -10,7 +10,7 @@
     {{neutron_command}} net-create {{network_name}} --
     {% if network_external is defined and network_external %}--router:external=true{% endif %}
   register: net_create
-  when: net_check.rc != 0
+  when: net_check|failed
 - name: create subnets in network {{network_name}}
   shell: >
     . /root/keystonerc_admin;
