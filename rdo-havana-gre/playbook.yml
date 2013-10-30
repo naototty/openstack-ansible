@@ -35,7 +35,6 @@
 - hosts: controller
   roles:
     - role: havana
-      templateonly: true
   tasks:
     - name: fix dashboard configuration
       lineinfile: dest=/etc/openstack-dashboard/local_settings
