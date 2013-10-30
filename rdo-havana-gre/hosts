@@ -1,0 +1,10 @@
+[controller]
+rdo-havana-api
+
+[network]
+rdo-havana-network
+
+[compute]
+rdo-havana-compute ovs_tunnel_ipaddr=10.9.8.10
+
+

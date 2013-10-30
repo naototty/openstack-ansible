@@ -1,0 +1,16 @@
+---
+CONFIG_NEUTRON_INSTALL                 : y
+CONFIG_NEUTRON_SERVER_HOST             : "{{hostvars['rdo-havana-network']['ansible_default_ipv4']['address']}}"
+CONFIG_NEUTRON_L3_HOSTS                : "{{hostvars['rdo-havana-network']['ansible_default_ipv4']['address']}}"
+CONFIG_NEUTRON_DHCP_HOSTS              : "{{hostvars['rdo-havana-network']['ansible_default_ipv4']['address']}}"
+CONFIG_NEUTRON_METADATA_HOSTS          : "{{hostvars['rdo-havana-network']['ansible_default_ipv4']['address']}}"
+CONFIG_NEUTRON_OVS_TENANT_NETWORK_TYPE : gre
+CONFIG_NEUTRON_OVS_TUNNEL_RANGES       : 1:1000
+CONFIG_NEUTRON_OVS_TUNNEL_IF           : eth1
+CONFIG_SWIFT_INSTALL                   : y
+CONFIG_SSH_KEY                         : /root/.ssh/id_rsa.pub
+CONFIG_NOVA_COMPUTE_HOSTS              : "{{hostvars['rdo-havana-compute']['ansible_default_ipv4']['address']}}"
+CONFIG_PROVISION_DEMO_FLOATRANGE       : 172.24.4.224/28
+selinux_state                          : permissive
+ovs_tunnel_netmask                     : 255.255.255.0
+
