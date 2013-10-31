@@ -14,4 +14,6 @@ CONFIG_PROVISION_DEMO_FLOATRANGE       : 172.24.4.224/28
 neutron_command                        : quantum
 selinux_state                          : permissive
 ovs_tunnel_netmask                     : 255.255.255.0
+keypair_name                           : lars
+keypair_pub_key                        : ~/.ssh/id_rsa.pub
 
