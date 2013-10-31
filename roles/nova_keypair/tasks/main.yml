@@ -1,5 +1,9 @@
 ---
 # main.yml for nova_keypair/tasks
+# NB: This will only work correctly on Havana and greater, since earlier
+# versions of nova did not have the keypair-show command.  This will still work 
+# fine for an initial deployment, but will cause plays to fail when the keypair
+# already exists.
 - command: nova keypair-show {{keypair_name}}
   ignore_errors: true
   register: keypair_check
