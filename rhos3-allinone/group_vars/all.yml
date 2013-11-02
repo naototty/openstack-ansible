@@ -1,0 +1,18 @@
+---
+CONFIG_QUANTUM_INSTALL                 : n
+CONFIG_SWIFT_INSTALL                   : y
+CONFIG_SSH_KEY                         : /root/.ssh/id_rsa.pub
+CONFIG_PROVISION_DEMO_FLOATRANGE       : 172.24.4.224/28
+CONFIG_NOVA_NETWORK_PUBIF              : eth0
+CONFIG_NOVA_NETWORK_PRIVIF             : lo
+CONFIG_NOVA_COMPUTE_PRIVIF             : lo
+CONFIG_PROVISION_ALL_IN_ONE_OVS_BRIDGE : y
+CONFIG_PROVISION_DEMO                  : y
+CONFIG_SWIFT_INSTALL                   : y
+neutron_command                        : quantum
+selinux_state                          : permissive
+ovs_tunnel_netmask                     : 255.255.255.0
+keypair_name                           : lars
+keypair_pub_key                        : ~/.ssh/id_rsa.pub
+br_ex_ipaddr: 172.24.4.225
+br_ex_netmask: 255.255.255.240
