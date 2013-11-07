@@ -1,6 +1,6 @@
 #!/bin/sh
 
-BASE=default/Fedora-19-x86_64-base.img
+BASE=default/rhel-6.4-x86_64-base.img
 NETWORK=bridge=virbr2,model=virtio
 NAME=rdo-grizzly
 
