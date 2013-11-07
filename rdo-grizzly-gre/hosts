@@ -1,0 +1,9 @@
+[controller]
+rdo-grizzly-api
+
+[network]
+rdo-grizzly-network
+
+[compute]
+rdo-grizzly-compute ovs_tunnel_ipaddr=10.10.8.10
+

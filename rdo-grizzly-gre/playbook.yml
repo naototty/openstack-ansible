@@ -1,0 +1,45 @@
+---
+- hosts: all
+  pre_tasks:
+    - get_url: >
+        url=http://repos.fedorapeople.org/repos/openstack/openstack-grizzly/rdo-release-grizzly-3.noarch.rpm
+        dest=/root/rdo-release-grizzly.rpm
+      register: repopkg
+    - command: yum -d1 -y install /root/rdo-release-grizzly.rpm
+      when: repopkg.changed
+  roles:
+    - common
+    - role: upgrade
+      reboot: yes
+  tasks:
+    - service: name=NetworkManager state=stopped enabled=false
+      ignore_errors: true
+    - yum: name=NetworkManager state=absent
+    - service: name=network state=running enabled=true
+
+- include: ../setup-root-sshkey.yml
+
+- hosts:
+  - compute
+  - network
+  roles:
+    - role: rhifcfg
+      ifcfg_device: "{{ CONFIG_QUANTUM_OVS_TUNNEL_IF }}"
+      ifcfg_type: Ethernet
+      ifcfg_onboot: yes
+      ifcfg_bootproto: none,
+      ifcfg_ipaddr: "{{ ovs_tunnel_ipaddr }}"
+      ifcfg_netmask: "{{ ovs_tunnel_netmask }}"
+      ifcfg_state: up
+
+- hosts: controller
+  roles:
+    - grizzly
+
+- hosts: network
+  roles:
+    - network_controller
+ 
+- include: ../setup-openstack.yml
+- include: ../setup-neutron.yml
+

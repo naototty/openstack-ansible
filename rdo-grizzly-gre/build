@@ -1,0 +1,12 @@
+#!/bin/sh
+
+BASE=default/Fedora-19-x86_64-base.img
+NETWORK=bridge=virbr2,model=virtio
+NAME=rdo-grizzly
+
+virsh list --name --all | grep $NAME | xargs -n1 virt-delete
+
+virt-from -f -r 512 -s 8G -w $NETWORK $BASE $NAME-network
+virt-from -f -r 2048 -s 8G -w $NETWORK $BASE $NAME-api
+virt-from -f -r 2048 -s 8G -w $NETWORK $BASE $NAME-compute
+

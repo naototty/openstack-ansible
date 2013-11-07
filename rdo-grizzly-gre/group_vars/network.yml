@@ -1,0 +1,5 @@
+---
+ovs_tunnel_ipaddr: 10.10.8.1
+br_ex_ipaddr: 172.24.4.225
+br_ex_netmask: 255.255.255.240
+
