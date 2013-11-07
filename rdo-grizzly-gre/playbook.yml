@@ -32,9 +32,22 @@
       ifcfg_netmask: "{{ ovs_tunnel_netmask }}"
       ifcfg_state: up
 
+- hosts: network
+  tasks:
+    - name: "BZ 1021227: neutron requires python-keystoneclient"
+      yum: name=python-keystoneclient state=latest
+
 - hosts: controller
   roles:
     - grizzly
+  tasks:
+
+- hosts:
+    - compute
+    - network
+  tasks:
+    - command: sed -i.tunnel '/^enable_tunneling/ s/False/True/' /etc/quantum/plugins/openvswitch/ovs_quantum_plugin.ini
+    - service: name=quantum-server state=running enabled=true
 
 - hosts: network
   roles:
