@@ -4,6 +4,8 @@ ONBOOT={{ifcfg_onboot|default('yes')}}
 BOOTPROTO={{ifcfg_bootproto|default('none')}}
 NM_CONTROLLED={{ifcfg_nm_controlled|default('no')}}
 
+{% if ifcfg_hwaddr  is defined %}HWADDR={{ifcfg_hwaddr}}
+{% endif %}
 {% if ifcfg_ipaddr  is defined %}IPADDR={{ifcfg_ipaddr}}
 {% endif %}
 {% if ifcfg_netmask  is defined %}NETMASK={{ifcfg_netmask}}
