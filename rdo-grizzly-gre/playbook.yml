@@ -52,7 +52,13 @@
         -e '/enable_tunneling/ a\local_ip={{ovs_tunnel_ipaddr}}'
         -e '/enable_tunneling/ a\tunnel_bridge=br-tun'
         /etc/quantum/plugins/openvswitch/ovs_quantum_plugin.ini
-    - service: name=quantum-server state=running enabled=true
+    - command: openstack-service restart quantum
+
+- hosts: compute
+  tasks:
+    - name: "disable filesystem injection"
+      command: sed -i '/^libvirt_inject_partition/ s/=.*/=-2/' /etc/nova/nova.conf
+    - command: openstack-service restart nova
 
 - hosts: network
   roles:
