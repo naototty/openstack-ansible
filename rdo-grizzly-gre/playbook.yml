@@ -50,6 +50,7 @@
         sed -i.tunnel 
         -e '/^enable_tunneling/ s/False/True/'
         -e '/enable_tunneling/ a\local_ip={{ovs_tunnel_ipaddr}}'
+        -e '/enable_tunneling/ a\tunnel_bridge=br-tun'
         /etc/quantum/plugins/openvswitch/ovs_quantum_plugin.ini
     - service: name=quantum-server state=running enabled=true
 
