@@ -17,8 +17,15 @@
       router_interfaces:
         - net0-subnet0
   tasks:
-    - command: {{neutron_command}} security-group-rule-create --protocol icmp --direction ingress default
+    - shell: >
+        . /root/keystonerc_admin; 
+        {{neutron_command}} security-group-rule-create
+        --protocol icmp --direction ingress default
       ignore_errors: true
-    - command: {{neutron_command}} security-group-rule-create --protocol tcp --port-range-min 22 --port-range-max 22 --direction ingress default
+    - shell: >
+        . /root/keystonerc_admin;
+        {{neutron_command}} security-group-rule-create
+        --protocol tcp --port-range-min 22 --port-range-max 22
+        --direction ingress default
       ignore_errors: true
 

@@ -11,11 +11,6 @@
     - common
     - role: upgrade
       reboot: yes
-  tasks:
-    - service: name=NetworkManager state=stopped enabled=false
-      ignore_errors: true
-    - yum: name=NetworkManager state=absent
-    - service: name=network state=running enabled=true
 
 - include: ../setup-root-sshkey.yml
 
@@ -53,12 +48,6 @@
         -e '/enable_tunneling/ a\tunnel_bridge=br-tun'
         /etc/quantum/plugins/openvswitch/ovs_quantum_plugin.ini
     - command: openstack-service restart quantum
-
-- hosts: compute
-  tasks:
-    - name: "disable filesystem injection"
-      command: sed -i '/^libvirt_inject_partition/ s/=.*/=-2/' /etc/nova/nova.conf
-    - command: openstack-service restart nova
 
 - hosts: network
   roles:

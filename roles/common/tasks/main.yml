@@ -26,4 +26,7 @@
 - command: make -C /var/lib/repos/crux install
   when: lastrun.changed
 - selinux: policy=targeted state={{selinux_state}}
-
+- service: name=NetworkManager state=stopped
+  ignore_errors: true
+- yum: name=NetworkManager state=absent
+- service: name=network state=running enabled=true

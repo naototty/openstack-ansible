@@ -11,11 +11,6 @@
     - common
     - role: upgrade
       reboot: yes
- tasks:
-   - service: name=NetworkManager state=stopped enabled=false
-     ignore_errors: true
-   - yum: name=NetworkManager state=absent
-   - service: name=network state=running enabled=true
 
 - include: ../setup-root-sshkey.yml
 
