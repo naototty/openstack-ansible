@@ -36,7 +36,9 @@
   roles:
     - role: havana
   tasks:
-    - name: fix dashboard configuration
+    - name: "BZ 1028726: heatclient requires python-pbr"
+      yum: name=python-pbr state=latest
+    - name: "BZ 988316: dashboard local_settings needs ALLOWED_HOSTS"
       lineinfile: dest=/etc/openstack-dashboard/local_settings
         line="ALLOWED_HOSTS = ['*']"
         regexp="^ALLOWED_HOSTS"
