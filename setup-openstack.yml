@@ -6,9 +6,9 @@
       command: egrep 'vmx|svm' /proc/cpuinfo
       register: check_virt
       ignore_errors: true
-    - name: "enable kvm acceleration"
-      command: sed -i '/^libvirt_type/ s/=.*/=kvm/' /etc/nova/nova.conf
-      when: check_virt|success
+#    - name: "enable kvm acceleration"
+#      command: sed -i '/^libvirt_type/ s/=.*/=kvm/' /etc/nova/nova.conf
+#      when: check_virt|success
     - command: openstack-service restart nova
 
 - hosts: controller
