@@ -1,13 +1,7 @@
 ---
 - hosts: all
-  pre_tasks:
-    - get_url: >
-        url=http://rdo.fedorapeople.org/openstack-grizzly/rdo-release-grizzly.rpm
-        dest=/root/rdo-release-grizzly.rpm
-      register: repopkg
-    - command: yum -d1 -y install /root/rdo-release-grizzly.rpm
-      when: repopkg.changed
   roles:
+    - repo_rdo_grizzly
     - common
     - role: upgrade
       reboot: yes
