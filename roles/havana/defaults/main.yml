@@ -119,4 +119,5 @@ CONFIG_SATELLITE_PROXY_PW: ''
 CONFIG_NAGIOS_HOST: "{{ansible_default_ipv4.address}}"
 CONFIG_NAGIOS_PW: secret
 templateonly: false
+packstack_answers_file: /root/packstack-answers.txt
 
