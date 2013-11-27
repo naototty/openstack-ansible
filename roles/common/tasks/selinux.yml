@@ -1,8 +1,0 @@
----
-- command: sed -i "/^SELINUX=/ s/=.*/={{selinux_state}}/" /etc/selinux/config
-- command: selinuxenabled
-  ignore_errors: true
-  register: selinux
-- command: setenforce 0
-  when: "selinux.rc == 0 and '{{selinux_state}}' in [ 'permissive', 'disabled' ]"
-

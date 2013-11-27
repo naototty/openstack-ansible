@@ -1,4 +1,0 @@
----
-- name: create /var/lib/repos directory
-  file: path=/var/lib/repos state=directory owner=root mode=0755
-

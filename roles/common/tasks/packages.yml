@@ -1,9 +1,0 @@
----
-- yum: name={{item}} state=latest
-  with_items:
-    - git
-    - strace
-    - screen
-    - vim-enhanced
-    - libvirt-client
-
