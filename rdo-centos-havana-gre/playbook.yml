@@ -1,0 +1,48 @@
+---
+- hosts: all
+  roles:
+    - repo_epel
+    - repo_rdo_havana
+    - common
+    - role: upgrade
+      reboot: yes
+
+- include: ../setup-root-sshkey.yml
+
+- hosts:
+  - compute
+  - network
+  roles:
+    - role: rhifcfg
+      ifcfg_device: "{{ CONFIG_NEUTRON_OVS_TUNNEL_IF }}"
+      ifcfg_type: Ethernet
+      ifcfg_onboot: yes
+      ifcfg_bootproto: none,
+      ifcfg_ipaddr: "{{ ovs_tunnel_ipaddr }}"
+      ifcfg_netmask: "{{ ovs_tunnel_netmask }}"
+      ifcfg_state: up
+
+- hosts: network
+  tasks:
+    - name: "BZ 1021227: neutron requires python-keystoneclient"
+      yum: name=python-keystoneclient state=latest
+
+- hosts: controller
+  roles:
+    - role: havana
+#  tasks:
+#    - name: "BZ 1028726: heatclient requires python-pbr"
+#      yum: name=python-pbr state=latest
+#    - name: "BZ 988316: dashboard local_settings needs ALLOWED_HOSTS"
+#      lineinfile: dest=/etc/openstack-dashboard/local_settings
+#        line="ALLOWED_HOSTS = ['*']"
+#        regexp="^ALLOWED_HOSTS"
+#      notify: restart httpd
+#
+- hosts: network
+  roles:
+   - network_controller
+ 
+- include: ../setup-openstack.yml
+- include: ../setup-neutron.yml
+

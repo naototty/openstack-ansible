@@ -1,0 +1,10 @@
+[controller]
+rdo-centos-havana-api
+
+[network]
+rdo-centos-havana-network
+
+[compute]
+rdo-centos-havana-compute ovs_tunnel_ipaddr=10.11.8.10
+
+
