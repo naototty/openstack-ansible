@@ -423,3 +423,7 @@ CONFIG_NAGIOS_HOST={{CONFIG_NAGIOS_HOST}}
 
 # The password of the nagiosadmin user on the Nagios server
 CONFIG_NAGIOS_PW={{CONFIG_NAGIOS_PW}}
+
+# Set to 'y' to enable ssl for qpid.
+CONFIG_QPID_ENABLE_SSL={{CONFIG_QPID_ENABLE_SSL}}
+
