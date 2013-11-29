@@ -70,6 +70,26 @@ CONFIG_MYSQL_PW={{CONFIG_MYSQL_PW}}
 # The IP address of the server on which to install the QPID service
 CONFIG_QPID_HOST={{CONFIG_QPID_HOST}}
 
+# Enable SSL for the QPID service
+CONFIG_QPID_ENABLE_SSL={{CONFIG_QPID_ENABLE_SSL}}
+
+# The password for the NSS certificate database of the QPID service
+CONFIG_QPID_NSS_CERTDB_PW={{CONFIG_QPID_NSS_CERTDB_PW}}
+
+# The port in which the QPID service listens to SSL connections
+CONFIG_QPID_SSL_PORT={{CONFIG_QPID_SSL_PORT}}
+
+# The filename of the certificate that the QPID service is going to
+# use
+CONFIG_QPID_SSL_CERT_FILE={{CONFIG_QPID_SSL_CERT_FILE}}
+
+# The filename of the private key that the QPID service is going to
+# use
+CONFIG_QPID_SSL_KEY_FILE={{CONFIG_QPID_SSL_KEY_FILE}}
+
+# Auto Generates self signed SSL certificate and key
+CONFIG_QPID_SSL_SELF_SIGNED={{CONFIG_QPID_SSL_SELF_SIGNED}}
+
 # The IP address of the server on which to install Keystone
 CONFIG_KEYSTONE_HOST={{CONFIG_KEYSTONE_HOST}}
 
@@ -166,9 +186,9 @@ CONFIG_NOVA_SCHED_RAM_ALLOC_RATIO={{CONFIG_NOVA_SCHED_RAM_ALLOC_RATIO}}
 # Private interface for Flat DHCP on the Nova compute servers
 CONFIG_NOVA_COMPUTE_PRIVIF={{CONFIG_NOVA_COMPUTE_PRIVIF}}
 
-# The IP address of the server on which to install the Nova Network
+# The IP address of the servers on which to install the Nova Network
 # service
-CONFIG_NOVA_NETWORK_HOST={{CONFIG_NOVA_NETWORK_HOST}}
+CONFIG_NOVA_NETWORK_HOSTS={{CONFIG_NOVA_NETWORK_HOSTS}}
 
 # Nova network manager
 CONFIG_NOVA_NETWORK_MANAGER={{CONFIG_NOVA_NETWORK_MANAGER}}
@@ -312,6 +332,9 @@ CONFIG_SWIFT_STORAGE_REPLICAS={{CONFIG_SWIFT_STORAGE_REPLICAS}}
 # FileSystem type for storage nodes
 CONFIG_SWIFT_STORAGE_FSTYPE={{CONFIG_SWIFT_STORAGE_FSTYPE}}
 
+# Shared secret for Swift
+CONFIG_SWIFT_HASH={{CONFIG_SWIFT_HASH}}
+
 # Whether to provision for demo usage and testing
 CONFIG_PROVISION_DEMO={{CONFIG_PROVISION_DEMO}}
 
@@ -423,7 +446,4 @@ CONFIG_NAGIOS_HOST={{CONFIG_NAGIOS_HOST}}
 
 # The password of the nagiosadmin user on the Nagios server
 CONFIG_NAGIOS_PW={{CONFIG_NAGIOS_PW}}
-
-# Set to 'y' to enable ssl for qpid.
-CONFIG_QPID_ENABLE_SSL={{CONFIG_QPID_ENABLE_SSL}}
 

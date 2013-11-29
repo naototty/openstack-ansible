@@ -45,7 +45,7 @@ CONFIG_NOVA_SCHED_HOST: "{{ansible_default_ipv4.address}}"
 CONFIG_NOVA_SCHED_CPU_ALLOC_RATIO: 16.0
 CONFIG_NOVA_SCHED_RAM_ALLOC_RATIO: 1.5
 CONFIG_NOVA_COMPUTE_PRIVIF: eth1
-CONFIG_NOVA_NETWORK_HOST: "{{ansible_default_ipv4.address}}"
+CONFIG_NOVA_NETWORK_HOSTS: "{{ansible_default_ipv4.address}}"
 CONFIG_NOVA_NETWORK_MANAGER: nova.network.manager.FlatDHCPManager
 CONFIG_NOVA_NETWORK_PUBIF: eth0
 CONFIG_NOVA_NETWORK_PRIVIF: eth1
@@ -119,6 +119,12 @@ CONFIG_SATELLITE_PROXY_PW: ''
 CONFIG_NAGIOS_HOST: "{{ansible_default_ipv4.address}}"
 CONFIG_NAGIOS_PW: secret
 CONFIG_QPID_ENABLE_SSL: n
+CONFIG_QPID_NSS_CERTDB_PW: 
+CONFIG_QPID_SSL_CERT_FILE: '/etc/pki/tls/certs/qpid_selfcert.pem'
+CONFIG_QPID_SSL_KEY_FILE: '/etc/pki/tls/private/qpid_selfkey.pem'
+CONFIG_QPID_SSL_PORT: '5671'
+CONFIG_QPID_SSL_SELF_SIGNED: 'y'
+CONFIG_SWIFT_HASH: '47fbf458ab304bce'
 templateonly: false
 packstack_answers_file: /root/packstack-answers.txt
 
