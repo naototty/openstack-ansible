@@ -1,32 +1,14 @@
 ---
-- name: check system hostname
-  command: hostname
-  register: hostname
-- name: set system hostname
-  command: hostname {{inventory_hostname}}
-  when: "hostname.stdout.find('localhost') != -1"
 - yum: name={{item}} state=latest
-  with_items:
-    - make
-    - git
-    - strace
-    - screen
-    - vim-enhanced
-    - libvirt-client
+  with_items: common_packages
 - name: create /var/lib/repos directory
   file: path=/var/lib/repos state=directory owner=root mode=0755
 
-- git: repo=git://github.com/larsks/sqlcli
-        dest=/var/lib/repos/sqlcli
-- command: make -C /var/lib/repos/sqlcli install
-
-- git: repo=git://github.com/larsks/osctl
-        dest=/var/lib/repos/osctl
-- command: make -C /var/lib/repos/osctl install
-
-- git: repo=git://github.com/larsks/crux
-        dest=/var/lib/repos/crux
-- command: make -C /var/lib/repos/crux install
+- git: repo=git://github.com/larsks/{{item}}
+        dest=/var/lib/repos/{{item}}
+  with_items: common_repos
+- command: make -C /var/lib/repos/{{item}} install
+  with_items: common_repos
 
 - selinux: policy=targeted state={{selinux_state}}
 - service: name=NetworkManager state=stopped

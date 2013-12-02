@@ -1,0 +1,11 @@
+common_repos:
+  - sqlcli
+  - crux
+  - osctl
+common_packages:
+  - make
+  - git
+  - strace
+  - screen
+  - vim-enhanced
+  - libvirt-client
