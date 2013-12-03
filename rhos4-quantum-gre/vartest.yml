@@ -1,6 +1,0 @@
-- hosts: all
-
-- hosts: all
-  tasks:
-    - template: src=vars.txt dest=/tmp/vars.txt
-

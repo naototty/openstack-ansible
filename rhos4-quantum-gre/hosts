@@ -1,9 +1,0 @@
-[controller]
-rhos4-cluster-api
-
-[network]
-rhos4-cluster-network
-
-[compute]
-rhos4-cluster-compute ovs_tunnel_ipaddr=10.9.8.10
-
