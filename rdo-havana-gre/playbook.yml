@@ -1,13 +1,8 @@
 ---
 - hosts: all
   pre_tasks:
-    - get_url: >
-        url=http://rdo.fedorapeople.org/openstack-havana/rdo-release-havana.rpm
-        dest=/root/rdo-release-havana.rpm
-      register: repopkg
-    - command: yum -d1 -y install /root/rdo-release-havana.rpm
-      when: repopkg.changed
   roles:
+    - repo_rdo_havana
     - common
     - role: upgrade
       reboot: yes
