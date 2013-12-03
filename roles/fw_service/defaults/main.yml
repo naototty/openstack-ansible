@@ -1,0 +1,4 @@
+---
+# main.yml for fw_service/defaults
+fw_service_dir: /usr/lib/firewalld/services/
+
