@@ -6,7 +6,7 @@ NAME=rdo-havana
 
 virsh list --name --all | grep $NAME | xargs -n1 virt-delete
 
-virt-from -f -r 512 -s 8G -w $NETWORK $BASE $NAME-network
-virt-from -f -r 2048 -s 8G -w $NETWORK $BASE $NAME-api
-virt-from -f -r 2048 -s 8G -w $NETWORK $BASE $NAME-compute
+virt-from -f -r 1024 -s 8G -w $NETWORK $BASE $NAME-network
+virt-from -f -r 2348 -s 8G -w $NETWORK $BASE $NAME-api
+virt-from -f -r 2348 -s 8G -w $NETWORK $BASE $NAME-compute
 
