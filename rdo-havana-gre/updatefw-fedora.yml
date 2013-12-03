@@ -1,0 +1,86 @@
+- hosts: controller
+  roles:
+    - role: fw_service
+      service_name: nova-api
+      service_description: nova api
+      service_ports:
+        - protocol: tcp
+          port: 8773
+        - protocol: tcp
+          port: 8774
+        - protocol: tcp
+          port: 8775
+    - role: fw_service
+      service_name: keystone
+      service_description: keystone identity service
+      service_ports:
+        - protocol: tcp
+          port: 5000
+        - protocol: tcp
+          port: 35357
+    - role: fw_service
+      service_name: glance-api
+      service_description: glance (openstack image service) api
+      service_ports:
+        - protocol: tcp
+          port: 9292
+    - role: fw_service
+      service_name: glance-registry
+      service_description: glance (openstack image service) registry
+      service_ports:
+        - protocol: tcp
+          port: 9191
+    - role: fw_service
+      service_name: qpid
+      service_description: qpid messaging service
+      service_ports:
+        - protocol: tcp
+          port: 5672
+    - role: fw_service
+      service_name: cinder
+      service_description: cinder (openstack volume service)
+      service_ports:
+        - protocol: tcp
+          port: 8776
+
+# Rules are in a separate play from service definitions to
+# allow notifications to fire.
+- hosts: controller
+  roles:
+    - role: fw_rule
+      rule_zone: public
+      rule_service: qpid
+    - role: fw_rule
+      rule_zone: public
+      rule_service: http
+    - role: fw_rule
+      rule_zone: public
+      rule_service: mysql
+    - role: fw_rule
+      rule_zone: public
+      rule_service: glance-api
+    - role: fw_rule
+      rule_zone: public
+      rule_service: glance-registry
+    - role: fw_rule
+      rule_zone: public
+      rule_service: keystone
+    - role: fw_rule
+      rule_zone: public
+      rule_service: cinder
+
+- hosts: network
+  roles:
+    - role: fw_service
+      service_name: neutron-server
+      service_description: openstack networking service
+      service_ports:
+        - protocol: tcp
+          port: 9696
+
+- hosts: network
+  roles:
+    - role: fw_rule
+      rule_zone: public
+      rule_service: neutron-server
+
