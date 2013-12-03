@@ -3,13 +3,17 @@
 - name: check system hostname
   command: hostname
   register: hostname
+
+- name: set system hostname
+  command: hostnamectl set-hostname {{inventory_hostname}}
+  when: ansible_distribution == "Fedora" and hostname.stdout.find('localhost') != -1
 - name: set system hostname (persistent)
   lineinfile: >
     create=yes state=present regexp="&^HOSTNAME="
     line="HOSTNAME={{inventory_hostname}}" 
     dest=/etc/sysconfig/network
-  when: "hostname.stdout.find('localhost') != -1"
-- name: set system hostname
+  when: ansible_distribution != "Fedora" and "hostname.stdout.find('localhost') != -1"
+- name: set system hostname (runtime)
   command: hostname {{inventory_hostname}}
-  when: "hostname.stdout.find('localhost') != -1"
+  when: ansible_distribution != "Fedora" and "hostname.stdout.find('localhost') != -1"
 
